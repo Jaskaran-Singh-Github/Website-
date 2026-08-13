@@ -20,6 +20,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -35,12 +36,20 @@
 
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Theme Script (Prevent FOUC) -->
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 antialiased">
 
     <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white shadow-sm">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white dark:bg-slate-800 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
@@ -53,14 +62,17 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link text-slate-600 hover:text-primary transition-colors">Home</a>
-                    <a href="about.html" class="nav-link text-slate-600 hover:text-primary transition-colors">About</a>
+                    <a href="index.html" class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Home</a>
+                    <a href="about.html" class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">About</a>
                     <a href="services.html"
-                        class="nav-link text-slate-600 hover:text-primary transition-colors">Services</a>
+                        class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Services</a>
                     <a href="conditions.html"
-                        class="nav-link text-slate-600 hover:text-primary transition-colors">Conditions</a>
+                        class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Conditions</a>
                     <a href="contact.html"
-                        class="nav-link text-slate-600 hover:text-primary transition-colors">Contact</a>
+                        class="nav-link text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Contact</a>                    <button class="theme-toggle-btn text-slate-600 dark:text-slate-300 hover:text-primary transition-colors focus:outline-none text-xl" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    
                     <a href="appointment.html"
                         class="bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-full font-medium transition-all shadow-md hover:shadow-lg">
                         Book Appointment
@@ -68,9 +80,12 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center">                    <button class="theme-toggle-btn text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none text-xl mr-4" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    
                     <button id="mobile-menu-button"
-                        class="text-slate-600 hover:text-primary focus:outline-none text-2xl">
+                        class="text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none text-2xl">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
@@ -78,19 +93,22 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-800 border-t dark:border-slate-700">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="index.html"
-                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Home</a>
+                    class="block px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary hover:bg-slate-50">Home</a>
                 <a href="about.html"
-                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">About</a>
+                    class="block px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary hover:bg-slate-50">About</a>
                 <a href="services.html"
-                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Services</a>
+                    class="block px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary hover:bg-slate-50">Services</a>
                 <a href="conditions.html"
-                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Conditions</a>
+                    class="block px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary hover:bg-slate-50">Conditions</a>
                 <a href="contact.html"
-                    class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-primary hover:bg-slate-50">Contact</a>
-                <a href="appointment.html"
+                    class="block px-3 py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary hover:bg-slate-50">Contact</a>                    <button class="theme-toggle-btn text-slate-600 dark:text-slate-300 hover:text-primary transition-colors focus:outline-none text-xl" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                
+                    <a href="appointment.html"
                     class="block w-full text-center mt-4 bg-primary text-white px-6 py-3 rounded-md font-medium">Book
                     Appointment</a>
             </div>
@@ -109,17 +127,18 @@
                         class="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary leading-tight mb-6 text-balance">
                         Move Better. <br /><span class="text-primary">Live Better.</span>
                     </h1>
-                    <p class="text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0">
+                    <p class="text-lg text-slate-600 dark:text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0">
                         Expert physiotherapy care to relieve pain, restore mobility, and improve your quality of life.
                         Get personalized treatments tailored to your unique needs.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="appointment.html"
+                        
+                    <a href="appointment.html"
                             class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl text-lg">
                             Book an Appointment
                         </a>
                         <a href="contact.html"
-                            class="bg-white text-secondary border border-slate-200 hover:border-secondary px-8 py-3 rounded-full font-medium transition-all shadow-sm hover:shadow text-lg">
+                            class="bg-white dark:bg-slate-800 text-secondary border border-slate-200 dark:border-slate-700 hover:border-secondary px-8 py-3 rounded-full font-medium transition-all shadow-sm hover:shadow text-lg">
                             Contact Us
                         </a>
                     </div>
@@ -133,14 +152,14 @@
                             class="relative rounded-[2rem] shadow-2xl object-cover w-full h-[400px] lg:h-[500px]">
 
                         <!-- Floating badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 animate-bounce"
+                        <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-xl flex items-center gap-4 animate-bounce"
                             style="animation-duration: 3s;">
                             <div class="bg-accent p-3 rounded-full text-primary">
                                 <i class="fa-solid fa-star text-xl"></i>
                             </div>
                             <div>
                                 <p class="font-bold text-secondary text-lg">15+ Years</p>
-                                <p class="text-slate-500 text-sm">Experience</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Experience</p>
                             </div>
                         </div>
                     </div>
@@ -150,24 +169,24 @@
     </section>
 
     <!-- Services Summary Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white dark:bg-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 max-w-3xl mx-auto">
                 <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Our Services</h2>
                 <h3 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Comprehensive Care for Your Recovery</h3>
-                <p class="text-slate-600 text-lg">We provide advanced, evidence-based treatments to help you recover
+                <p class="text-slate-600 dark:text-slate-300 text-lg">We provide advanced, evidence-based treatments to help you recover
                     faster and stay healthy.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="service-card bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                <div class="service-card bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100">
                     <div
                         class="icon-container w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-person-running"></i>
                     </div>
                     <h4 class="text-xl font-bold text-secondary mb-3">Sports Injury Rehab</h4>
-                    <p class="text-slate-600 mb-6">Specialized recovery programs for athletes to safely return to their
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">Specialized recovery programs for athletes to safely return to their
                         sport after an injury.</p>
                     <a href="services.html"
                         class="text-primary font-medium hover:text-primary-hover flex items-center gap-2">Learn more <i
@@ -175,13 +194,13 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="service-card bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                <div class="service-card bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100">
                     <div
                         class="icon-container w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-child-reaching"></i>
                     </div>
                     <h4 class="text-xl font-bold text-secondary mb-3">Back Pain Treatment</h4>
-                    <p class="text-slate-600 mb-6">Targeted therapies to relieve chronic and acute back pain and improve
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">Targeted therapies to relieve chronic and acute back pain and improve
                         spinal health.</p>
                     <a href="services.html"
                         class="text-primary font-medium hover:text-primary-hover flex items-center gap-2">Learn more <i
@@ -189,13 +208,13 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="service-card bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                <div class="service-card bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100">
                     <div
                         class="icon-container w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-bone"></i>
                     </div>
                     <h4 class="text-xl font-bold text-secondary mb-3">Post-Surgery Rehab</h4>
-                    <p class="text-slate-600 mb-6">Guided rehabilitation following orthopedic surgeries to restore
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">Guided rehabilitation following orthopedic surgeries to restore
                         strength and mobility.</p>
                     <a href="services.html"
                         class="text-primary font-medium hover:text-primary-hover flex items-center gap-2">Learn more <i
@@ -212,7 +231,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="py-20 bg-slate-50">
+    <section class="py-20 bg-slate-50 dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2 relative">
@@ -223,21 +242,155 @@
                     <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">About Our Clinic</h2>
                     <h3 class="text-3xl md:text-4xl font-bold text-secondary mb-6 text-balance">Modern Facility.
                         Compassionate Care.</h3>
-                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                    <p class="text-slate-600 dark:text-slate-300 text-lg mb-6 leading-relaxed">
                         At Dr. Prakash Physiotherapy Clinic, we believe in a holistic approach to healing. Our
                         state-of-the-art facility is equipped with the latest technology to ensure you receive the best
                         possible care in a comfortable environment.
                     </p>
                     <ul class="space-y-4 mb-8">
-                        <li class="flex items-start gap-3 text-slate-700">
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-200">
                             <i class="fa-solid fa-circle-check text-primary mt-1"></i>
                             <span>Experienced and certified physiotherapists</span>
                         </li>
-                        <li class="flex items-start gap-3 text-slate-700">
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-200">
                             <i class="fa-solid fa-circle-check text-primary mt-1"></i>
                             <span>Personalized 1-on-1 treatment plans</span>
                         </li>
-                        <li class="flex items-start gap-3 text-slate-700">
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                            <span>Modern, clean, and welcoming environment</span>
+                        </li>
+                    </ul>
+                    <a href="about.html"
+                        class="bg-secondary hover:bg-slate-800 text-white px-8 py-3 rounded-full font-medium transition-all shadow-md">
+                        Meet Our Doctor
+                    </a>
+                </div>
+            </div>
+                    <a href="appointment.html"
+                            class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl text-lg">
+                            Book an Appointment
+                        </a>
+                        <a href="contact.html"
+                            class="bg-white dark:bg-slate-800 text-secondary border border-slate-200 dark:border-slate-700 hover:border-secondary px-8 py-3 rounded-full font-medium transition-all shadow-sm hover:shadow text-lg">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="relative">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-[2rem] transform rotate-3 opacity-20">
+                        </div>
+                        <img src="images/hero.png" alt="Physiotherapist helping patient"
+                            class="relative rounded-[2rem] shadow-2xl object-cover w-full h-[400px] lg:h-[500px]">
+
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-xl flex items-center gap-4 animate-bounce"
+                            style="animation-duration: 3s;">
+                            <div class="bg-accent p-3 rounded-full text-primary">
+                                <i class="fa-solid fa-star text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-secondary text-lg">15+ Years</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Summary Section -->
+    <section class="py-20 bg-white dark:bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Our Services</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Comprehensive Care for Your Recovery</h3>
+                <p class="text-slate-600 dark:text-slate-300 text-lg">We provide advanced, evidence-based treatments to help you recover
+                    faster and stay healthy.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100">
+                    <div
+                        class="icon-container w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3">Sports Injury Rehab</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">Specialized recovery programs for athletes to safely return to their
+                        sport after an injury.</p>
+                    <a href="services.html"
+                        class="text-primary font-medium hover:text-primary-hover flex items-center gap-2">Learn more <i
+                            class="fa-solid fa-arrow-right text-sm"></i></a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100">
+                    <div
+                        class="icon-container w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
+                        <i class="fa-solid fa-child-reaching"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3">Back Pain Treatment</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">Targeted therapies to relieve chronic and acute back pain and improve
+                        spinal health.</p>
+                    <a href="services.html"
+                        class="text-primary font-medium hover:text-primary-hover flex items-center gap-2">Learn more <i
+                            class="fa-solid fa-arrow-right text-sm"></i></a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100">
+                    <div
+                        class="icon-container w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
+                        <i class="fa-solid fa-bone"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-secondary mb-3">Post-Surgery Rehab</h4>
+                    <p class="text-slate-600 dark:text-slate-300 mb-6">Guided rehabilitation following orthopedic surgeries to restore
+                        strength and mobility.</p>
+                    <a href="services.html"
+                        class="text-primary font-medium hover:text-primary-hover flex items-center gap-2">Learn more <i
+                            class="fa-solid fa-arrow-right text-sm"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="services.html"
+                    class="inline-block text-secondary font-semibold border-b-2 border-primary pb-1 hover:text-primary transition-colors">View
+                    All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <img src="images/clinic.png" alt="Modern Clinic Interior"
+                        class="rounded-[2rem] shadow-xl object-cover w-full h-[500px]">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">About Our Clinic</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-secondary mb-6 text-balance">Modern Facility.
+                        Compassionate Care.</h3>
+                    <p class="text-slate-600 dark:text-slate-300 text-lg mb-6 leading-relaxed">
+                        At Dr. Prakash Physiotherapy Clinic, we believe in a holistic approach to healing. Our
+                        state-of-the-art facility is equipped with the latest technology to ensure you receive the best
+                        possible care in a comfortable environment.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                            <span>Experienced and certified physiotherapists</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-200">
+                            <i class="fa-solid fa-circle-check text-primary mt-1"></i>
+                            <span>Personalized 1-on-1 treatment plans</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-200">
                             <i class="fa-solid fa-circle-check text-primary mt-1"></i>
                             <span>Modern, clean, and welcoming environment</span>
                         </li>
@@ -252,62 +405,65 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white dark:bg-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Testimonials</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-secondary">What Our Patients Say</h3>
+                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2 reveal">Testimonials</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-secondary reveal reveal-delay-100">What Our Patients Say</h3>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="bg-slate-50 p-8 rounded-2xl relative shadow-sm border border-slate-100">
-                    <i class="fa-solid fa-quote-left text-4xl text-accent absolute top-6 right-8"></i>
-                    <div class="flex text-yellow-400 mb-4 text-sm gap-1">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+            <!-- Swiper Container -->
+            <div class="swiper testimonials-slider pb-12 reveal reveal-delay-200">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Review 1 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl relative shadow-sm border border-slate-100 h-full flex flex-col">
+                            <i class="fa-solid fa-quote-left text-4xl text-accent absolute top-6 right-8"></i>
+                            <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 mb-6 italic flex-grow">"After my knee surgery, I was struggling to walk. The team here gave me a tailored plan and guided me every step of the way. I'm now fully recovered!"</p>
+                            <div>
+                                <h4 class="font-bold text-secondary">Sarah J.</h4>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Post-Surgery Patient</p>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-slate-600 mb-6 italic">"After my knee surgery, I was struggling to walk. The team
-                        here gave me a tailored plan and guided me every step of the way. I'm now fully recovered!"</p>
-                    <div>
-                        <h4 class="font-bold text-secondary">Sarah J.</h4>
-                        <p class="text-slate-500 text-sm">Post-Surgery Patient</p>
-                    </div>
-                </div>
 
-                <!-- Review 2 -->
-                <div class="bg-slate-50 p-8 rounded-2xl relative shadow-sm border border-slate-100">
-                    <i class="fa-solid fa-quote-left text-4xl text-accent absolute top-6 right-8"></i>
-                    <div class="flex text-yellow-400 mb-4 text-sm gap-1">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                    <!-- Review 2 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl relative shadow-sm border border-slate-100 h-full flex flex-col">
+                            <i class="fa-solid fa-quote-left text-4xl text-accent absolute top-6 right-8"></i>
+                            <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 mb-6 italic flex-grow">"I had chronic lower back pain for years. Just a few sessions of manual therapy and exercise guidance here changed my life completely."</p>
+                            <div>
+                                <h4 class="font-bold text-secondary">Michael T.</h4>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">IT Professional</p>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-slate-600 mb-6 italic">"I had chronic lower back pain for years. Just a few sessions
-                        of manual therapy and exercise guidance here changed my life completely."</p>
-                    <div>
-                        <h4 class="font-bold text-secondary">Michael T.</h4>
-                        <p class="text-slate-500 text-sm">IT Professional</p>
-                    </div>
-                </div>
 
-                <!-- Review 3 -->
-                <div class="bg-slate-50 p-8 rounded-2xl relative shadow-sm border border-slate-100 md:hidden lg:block">
-                    <i class="fa-solid fa-quote-left text-4xl text-accent absolute top-6 right-8"></i>
-                    <div class="flex text-yellow-400 mb-4 text-sm gap-1">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                            class="fa-solid fa-star"></i>
+                    <!-- Review 3 -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl relative shadow-sm border border-slate-100 h-full flex flex-col">
+                            <i class="fa-solid fa-quote-left text-4xl text-accent absolute top-6 right-8"></i>
+                            <div class="flex text-yellow-400 mb-4 text-sm gap-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 mb-6 italic flex-grow">"Extremely professional and caring staff. The clinic is spotless and their approach to sports injuries got me back on the field faster than expected."</p>
+                            <div>
+                                <h4 class="font-bold text-secondary">David R.</h4>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm">Amateur Athlete</p>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-slate-600 mb-6 italic">"Extremely professional and caring staff. The clinic is
-                        spotless and their approach to sports injuries got me back on the field faster than expected."
-                    </p>
-                    <div>
-                        <h4 class="font-bold text-secondary">David R.</h4>
-                        <p class="text-slate-500 text-sm">Amateur Athlete</p>
-                    </div>
+
                 </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
@@ -315,23 +471,13 @@
     <!-- Call to Action -->
     <section class="py-20 bg-secondary relative overflow-hidden">
         <div class="absolute inset-0 bg-primary opacity-20 transform -skew-y-3 origin-top-left"></div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center reveal">
             <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Are you suffering from pain or limited movement?
             </h2>
             <p class="text-slate-300 text-xl mb-10 text-balance">
                 Let our physiotherapy team help you get back to a healthier, more active life.
             </p>
-            <a href="appointment.html"
-                class="inline-block bg-white text-secondary hover:bg-primary hover:text-white px-10 py-4 rounded-full font-bold transition-colors shadow-xl text-lg">
-                Book Your Appointment Today
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-300 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
                 <!-- Branding -->
                 <div>
                     <a href="index.html" class="flex items-center gap-2 mb-6">
@@ -409,9 +555,9 @@
                 </div>
             </div>
 
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-slate-500">&copy; 2026 Dr. Prakash Physiotherapy Clinic. All rights reserved.</p>
-                <div class="flex gap-4 text-sm text-slate-500">
+            <div class="border-t dark:border-slate-700 border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500 dark:text-slate-400">&copy; 2026 Dr. Prakash Physiotherapy Clinic. All rights reserved.</p>
+                <div class="flex gap-4 text-sm text-slate-500 dark:text-slate-400">
                     <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
                 </div>
@@ -423,3 +569,5 @@
 </body>
 
 </html>
+
+
