@@ -2,12 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #0d9488; /* Teal-600 */
-  --primary-hover: #0f766e; /* Teal-700 */
-  --secondary: #1e3a8a; /* Blue-900 */
-  --accent: #e0f2fe; /* Sky-100 */
-  --text-dark: #1e293b; /* Slate-800 */
-  --text-light: #64748b; /* Slate-500 */
+  --primary: #0d9488;
+  /* Teal-600 */
+  --primary-hover: #0f766e;
+  /* Teal-700 */
+  --secondary: #1e3a8a;
+  /* Blue-900 */
+  --accent: #e0f2fe;
+  /* Sky-100 */
+  --text-dark: #1e293b;
+  /* Slate-800 */
+  --text-light: #64748b;
+  /* Slate-500 */
 }
 
 body {
@@ -35,8 +41,15 @@ html.dark body {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
@@ -55,9 +68,17 @@ html.dark body {
   transform: translateY(0);
 }
 
-.reveal-delay-100 { transition-delay: 100ms; }
-.reveal-delay-200 { transition-delay: 200ms; }
-.reveal-delay-300 { transition-delay: 300ms; }
+.reveal-delay-100 {
+  transition-delay: 100ms;
+}
+
+.reveal-delay-200 {
+  transition-delay: 200ms;
+}
+
+.reveal-delay-300 {
+  transition-delay: 300ms;
+}
 
 /* Hover effects for cards */
 .service-card {
@@ -78,6 +99,7 @@ html.dark body {
 html.dark .service-card {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
 }
+
 html.dark .service-card:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
@@ -90,6 +112,7 @@ nav.scrolled {
 }
 
 html.dark nav.scrolled {
-  background-color: rgba(15, 23, 42, 0.85); /* slate-900 with opacity */
+  background-color: rgba(15, 23, 42, 0.85);
+  /* slate-900 with opacity */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
 }
